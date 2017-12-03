@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ClientThread implements Runnable {
     Thread thrd;
@@ -14,6 +16,7 @@ public class ClientThread implements Runnable {
     private Server server = new Server();
     private int threadNumber;
     private ClientThread[] TEMPORARY_THREAD = new ClientThread[ServerThread.MAX_CLIENTS];
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
     private int i;
     public String ipAdr;
 
@@ -72,7 +75,7 @@ public class ClientThread implements Runnable {
      * przez serwer                    *
      ***********************************/
     public synchronized void sendMessage(String message) {
-        outStream.println(message);
+        outStream.println(time() + " " + message);
         outStream.flush();
     }
 
@@ -88,7 +91,7 @@ public class ClientThread implements Runnable {
             stopped = true;
 
         if(!isNickSet(msg) && !msg.equals("QFD%^&$"))
-            sendMessage("****Aby móc pisać ustaw nick i zatwierdź klawiszem enter****");
+            sendMessage("SERWER: Aby móc pisać ustaw nick i zatwierdź klawiszem enter");
         else {
             i = 0;
             do {
@@ -118,6 +121,10 @@ public class ClientThread implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String time() {
+        return simpleDateFormat.format(new Date());
     }
 
     /**************************************************

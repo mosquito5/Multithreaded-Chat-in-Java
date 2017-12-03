@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ public class Server {
     boolean SocketsConnected;
     boolean isValid;
     public ServerThread serverThread;
-    public SimpleDateFormat simpleDateFormat;
+    //private SimpleDateFormat simpleDateFormat;
     public String msg = null;
 
 
@@ -35,6 +36,7 @@ public class Server {
     }
 
     private void setUp() {
+        //System.out.println(simpleDateFormat.format(new Date()));
         System.out.println("Chcesz skonfigurowac serwer? [t/n/a-atomatycznie]");
 
         input = scanner.nextLine();
@@ -115,7 +117,7 @@ public class Server {
         /*************************
          * czysci bufor ze smieci*
          *************************/
-        scanner.nextLine();
+        //scanner.nextLine();
         /*****************
          * wczytuje znak*
          ****************/

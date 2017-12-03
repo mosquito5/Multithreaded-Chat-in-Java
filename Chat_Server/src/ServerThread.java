@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class ServerThread extends Server implements Runnable {
@@ -28,6 +30,8 @@ public class ServerThread extends Server implements Runnable {
 
     public static final int MAX_CLIENTS = 10;
     public static ClientThread[] THREAD = new ClientThread[MAX_CLIENTS];
+
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
 
     public boolean stopped = false;
 
