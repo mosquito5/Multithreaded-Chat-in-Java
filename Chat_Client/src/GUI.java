@@ -37,7 +37,11 @@ public class GUI extends Application {
     private TextField portField;
     //private TextFormatter <Integer> portField; //konwertuje textfiled by zwracal integer
 
-    private Label info;
+    /******************************************
+     *status jakies bledy zostawione do testow*
+     * zmiana koncepcji obslugi bledow        *
+     ******************************************/
+    //private Label info;
 
     private PrintWriter outStream;
     private BufferedReader inputStream;
@@ -72,9 +76,12 @@ public class GUI extends Application {
 
         labNick = new Label();
 
-        //status jakies bledy
-        info = new Label();
-        info.setText("Status: OK");
+        /******************************************
+         *status jakies bledy zostawione do testow*
+         * zmiana koncepcji obslugi bledow        *
+         ******************************************/
+        /*info = new Label();
+        info.setText("Status: OK");*/
 
         hostAddrLabel = new Label("Adres hosta: ");
         hostAddrField = new TextField();
@@ -93,7 +100,7 @@ public class GUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         System.out.println("start");
 
-        primaryStage.setTitle("Lan Chat 0.1");
+        primaryStage.setTitle("Multithreaded Chat Client 0.2");
         primaryStage.setResizable(false);
 
         FlowPane flowPane = new FlowPane(10, 10);
@@ -121,7 +128,8 @@ public class GUI extends Application {
         connectButton.setOnAction((ae) -> {
             connectToServer();
             //watek do obslugi okna i przychodzacych wiadomosci, oraz jego referencja
-            chatWindowThread = new ChatWindowThread(chatWindow,inputStream);
+            if(isConnected)
+                chatWindowThread = new ChatWindowThread(chatWindow,inputStream);
         });
 
         //pole tekstowe do wyslania wiadomosci jest puste
@@ -157,7 +165,7 @@ public class GUI extends Application {
             });
 
         flowPane.getChildren().addAll(chatWindow,msg, sendButton, nickName, labNick, hostAddrLabel, hostAddrField,
-                portLabel, portField, connectButton, info);
+                portLabel, portField, connectButton/*, info*/);
 
         primaryStage.show();
 
@@ -188,13 +196,15 @@ public class GUI extends Application {
                 connection.connect(new InetSocketAddress("127.0.0.1", 4694), 500);
             }
             else if(hostAddrField.getText() == null) {
-                connection.connect(new InetSocketAddress("127.0.0.1", Integer.parseInt(portField.getText())), 500);
+                connection.connect(new InetSocketAddress("127.0.0.1", Integer.parseInt(portField.getText())),
+                        500);
             }
             else if(portField.getText() == null) {
                 connection.connect(new InetSocketAddress(hostAddrField.getText(), 4694), 500);
             }
             else {
-                connection.connect(new InetSocketAddress(hostAddrField.getText(), Integer.parseInt(portField.getText())), 500);
+                connection.connect(new InetSocketAddress(hostAddrField.getText(), Integer.parseInt(portField.getText())),
+                        500);
             }
 
             //ustawia streamy
@@ -203,30 +213,40 @@ public class GUI extends Application {
             isConnected = true;
 
         }
-        catch (UnknownHostException e){
-            info.setText("Problem z połączeniem z hostem");
+        catch (UnknownHostException none){
+            showError("***Problem z połączeniem z serwerem UnknownHostException***");
+            isConnected = false;
+            //info.setText("Problem z połączeniem z hostem");
         }
-        catch (IOException e) {
-            info.setText("Błąd we/wy");
+        catch (IOException none) {
+            showError("***Problem z nawiązaniem połączenia z serwerem IOException***");
+            isConnected = false;
+            //info.setText("Błąd we/wy");
         }
 
     }
 
-    public void sendMessage(String message) {
+    private void sendMessage(String message) {
         outStream.println(nick + ": " + message);
         outStream.flush();
     }
 
-    public void setStreams() throws IOException {
+    private void setStreams() throws IOException {
         outStream = new PrintWriter(connection.getOutputStream()); //true?
         inputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()));
     }
 
-    public void closeStreams() throws IOException {
+    private void closeStreams() throws IOException {
         outStream.println("QFD%^&$");
         outStream.flush();
         outStream.close();
         inputStream.close();
+    }
+
+    void showError(String err) {
+        chatWindow.appendText(err);
+        chatWindow.appendText("\n");
+
     }
     //do testów
    /* private void showMessage(String message) {

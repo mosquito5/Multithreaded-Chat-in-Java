@@ -18,6 +18,15 @@ public class ChatWindowThread implements Runnable {
         thrd.start(); // uruchamia watek odrazu po utowrzeniu
     }
 
+// zostawione do testow
+   /* ChatWindowThread(TextArea chatWindow) {
+        thrd = new Thread(this);
+        this.chatWindow = chatWindow;
+        thrd.start(); // uruchamia watek odrazu po utowrzeniu
+    }*/
+
+
+
     @Override
     public void run() {
         //stopped false
@@ -28,6 +37,9 @@ public class ChatWindowThread implements Runnable {
             } catch (IOException none) {
                 threadStop();
                 //none.printStackTrace();
+            } catch (NullPointerException none) {
+                showMessage("***Serwer nieosiągalny***");
+                stopped = true;
             }
         }
 
@@ -40,12 +52,12 @@ public class ChatWindowThread implements Runnable {
         stopped = true;
         closeThreadStream();
     }
-    private void closeThreadStream() {
-        try {
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
+    private void closeThreadStream() {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    }
 }

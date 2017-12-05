@@ -87,8 +87,10 @@ public class ClientThread implements Runnable {
         String msg = inputStream.readLine();
         System.out.println(msg);
 
-        if(msg.equals("QFD%^&$"))
+        if(msg.equals("QFD%^&$")){
             stopped = true;
+            return;
+        }
 
         if(!isNickSet(msg) && !msg.equals("QFD%^&$"))
             sendMessage("SERWER: Aby móc pisać ustaw nick i zatwierdź klawiszem enter");
