@@ -7,17 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5807dafe-8af3-496b-a2f4-ed583296e42e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chat_Client/ChatWindowThread.class" afterPath="$PROJECT_DIR$/out/production/Chat_Client/ChatWindowThread.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chat_Client/GUI.class" afterPath="$PROJECT_DIR$/out/production/Chat_Client/GUI.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chat_Client/LimitedTextField.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Chat_Client/META-INF/MANIFEST.MF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/ChatWindowThread.java" afterPath="$PROJECT_DIR$/src/ChatWindowThread.java" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
-      <change beforePath="$PROJECT_DIR$/src/LimitedTextField.java" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../Chat_Server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Chat_Server/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../Chat_Server/out/production/Chat_Server/ClientThread.class" afterPath="$PROJECT_DIR$/../Chat_Server/out/production/Chat_Server/ClientThread.class" />
-      <change beforePath="$PROJECT_DIR$/../Chat_Server/src/ClientThread.java" afterPath="$PROJECT_DIR$/../Chat_Server/src/ClientThread.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,7 +34,7 @@
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
+            <state relative-caret-position="-55">
               <caret line="217" column="32" lean-forward="false" selection-start-line="217" selection-start-column="32" selection-end-line="217" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -86,7 +76,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-1" />
     <option name="y" value="26" />
     <option name="width" value="961" />
@@ -330,16 +320,15 @@
       <workItem from="1512295937773" duration="61000" />
       <workItem from="1512296018073" duration="578000" />
       <workItem from="1512328893803" duration="2379000" />
-      <workItem from="1512462769788" duration="13432000" />
+      <workItem from="1512462769788" duration="14626000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126391000" />
+    <option name="totallyTimeSpent" value="127585000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="26" width="1922" height="1055" extended-state="6" />
-    <editor active="true" />
+    <frame x="-1" y="26" width="1922" height="1055" extended-state="7" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -867,7 +856,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
+        <state relative-caret-position="-55">
           <caret line="217" column="32" lean-forward="false" selection-start-line="217" selection-start-column="32" selection-end-line="217" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
