@@ -10,13 +10,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.util.concurrent.TimeoutException;
 
 
 public class GUI extends Application {
-    //zmienne i obiekty
+
     private Button sendButton;
 
     private Button connectButton;
@@ -35,13 +33,7 @@ public class GUI extends Application {
 
     private Label portLabel;
     private TextField portField;
-    //private TextFormatter <Integer> portField; //konwertuje textfiled by zwracal integer
 
-    /******************************************
-     *status jakies bledy zostawione do testow*
-     * zmiana koncepcji obslugi bledow        *
-     ******************************************/
-    //private Label info;
 
     private PrintWriter outStream;
     private BufferedReader inputStream;
@@ -51,7 +43,7 @@ public class GUI extends Application {
 
     private Socket connection;
 
-    private ChatWindowThread chatWindowThread;  //nieuzywane
+    private ChatWindowThread chatWindowThread;
 
     private boolean isConnected = false;
 
@@ -60,7 +52,6 @@ public class GUI extends Application {
 
     @Override
     public void init() {
-        //inicjalizacja zmiennych i obiektow
         System.out.println("init");
 
         sendButton = new Button("Wyślij");
@@ -75,13 +66,6 @@ public class GUI extends Application {
         chatWindow = new TextArea();
 
         labNick = new Label();
-
-        /******************************************
-         *status jakies bledy zostawione do testow*
-         * zmiana koncepcji obslugi bledow        *
-         ******************************************/
-        /*info = new Label();
-        info.setText("Status: OK");*/
 
         hostAddrLabel = new Label("Adres hosta: ");
         hostAddrField = new TextField();
@@ -109,10 +93,8 @@ public class GUI extends Application {
         msg.setPrefWidth(570);
 
         nickName.setPrefWidth(130);
-        //nickName.
 
         hostAddrField.setPrefWidth(80);
-
 
         portField.setPrefWidth(50);
 
@@ -121,18 +103,21 @@ public class GUI extends Application {
 
         labNick.setText("Brak");
 
-
         primaryStage.setScene(scene);
 
 
         connectButton.setOnAction((ae) -> {
             connectToServer();
-            //watek do obslugi okna i przychodzacych wiadomosci, oraz jego referencja
+            /*************************************************************************
+             *watek do obslugi okna i przychodzacych wiadomosci, oraz jego referencja*
+             ************************************************************************/
             if(isConnected)
                 chatWindowThread = new ChatWindowThread(chatWindow,inputStream);
         });
 
-        //pole tekstowe do wyslania wiadomosci jest puste
+        /*************************************************
+         *pole tekstowe do wyslania wiadomosci jest puste*
+         *************************************************/
         msg.setOnAction((ae) -> {
             /************************************
              *instrukcja ktora wysyla wiadomosc *
@@ -144,7 +129,9 @@ public class GUI extends Application {
             msg.setText("");
         });
 
-        //dzialanie po wcisnieciu przycisku wyslij
+        /******************************************
+         *dzialanie po wcisnieciu przycisku wyslij*
+         ******************************************/
         sendButton.setOnAction((ae) -> {
             /************************************
              *instrukcja ktora wysyla wiadomosc *
@@ -174,13 +161,6 @@ public class GUI extends Application {
     @Override
     public void stop() throws IOException {
         System.out.println("stop");
-
-        /*do testów
-        System.out.println(portField.getText());
-        System.out.println(hostAddrField.getText());
-        */
-//        if(chatWindowThread.thrd.isAlive() != true) //powoduje blad gdy nie ma polaczenia
-//            chatWindowThread.threadStop();
 
         if(isConnected)
             closeStreams();
@@ -216,12 +196,10 @@ public class GUI extends Application {
         catch (UnknownHostException none){
             showError("***Problem z połączeniem z serwerem UnknownHostException***");
             isConnected = false;
-            //info.setText("Problem z połączeniem z hostem");
         }
         catch (IOException none) {
             showError("***Problem z nawiązaniem połączenia z serwerem IOException***");
             isConnected = false;
-            //info.setText("Błąd we/wy");
         }
 
     }
@@ -248,8 +226,4 @@ public class GUI extends Application {
         chatWindow.appendText("\n");
 
     }
-    //do testów
-   /* private void showMessage(String message) {
-        chatWindow.appendText(message);
-    }*/
 }
